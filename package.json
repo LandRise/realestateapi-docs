@@ -1,0 +1,34 @@
+{
+  "name": "realestateapi-docs",
+  "version": "1.0.0",
+  "description": "Official documentation for RealEstateAPI - Comprehensive real estate data API",
+  "keywords": [
+    "real estate",
+    "property data",
+    "MLS",
+    "property valuation",
+    "AVM",
+    "skip trace",
+    "demographics",
+    "API",
+    "documentation"
+  ],
+  "homepage": "https://developer.realestateapi.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/realestateapi/docs.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "RealEstateAPI",
+    "email": "support@realestateapi.com",
+    "url": "https://www.realestateapi.com"
+  },
+  "scripts": {
+    "test": "echo \"Documentation repository - no tests required\""
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

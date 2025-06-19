@@ -1,0 +1,29 @@
+bug:
+  - '(bug|error|issue|problem|broken)'
+  - '(not working|doesn''t work|fails to)'
+  - '(incorrect|wrong|invalid)'
+
+documentation:
+  - '(doc|docs|documentation)'
+  - '(readme|guide|tutorial)'
+  - '(example|sample)'
+
+enhancement:
+  - '(feature|enhancement|improve)'
+  - '(request|suggestion|proposal)'
+  - '(add|include|support)'
+
+api:
+  - '(api|endpoint|request|response)'
+  - '(authentication|auth)'
+  - '(property|search|mls)'
+
+question:
+  - '(question|help|how to)'
+  - '(clarification|explain)'
+  - '(usage|implementation)'
+
+good first issue:
+  - '(typo|spelling|grammar)'
+  - '(simple|easy|beginner)'
+  - '(first time|new contributor)'

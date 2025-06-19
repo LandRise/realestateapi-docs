@@ -1,0 +1,101 @@
+name: 📚 Documentation Improvement
+description: Suggest improvements to existing documentation
+title: "[Docs] "
+labels: ["documentation", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve our documentation! Your suggestions help make RealEstateAPI easier to use for everyone.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Documentation Area
+      description: Which area needs improvement?
+      options:
+        - API Reference
+        - Getting Started Guide
+        - Code Examples
+        - Authentication Guide
+        - Webhooks Documentation
+        - Integration Patterns
+        - Contributing Guidelines
+        - README
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page
+    attributes:
+      label: Specific Page/Section
+      description: Which page or section needs improvement?
+      placeholder: e.g., docs/api-reference/property-search.md, JavaScript examples
+    validations:
+      required: true
+
+  - type: dropdown
+    id: improvement_type
+    attributes:
+      label: Type of Improvement
+      description: What kind of improvement are you suggesting?
+      options:
+        - Clarity - Make existing content clearer
+        - Completeness - Add missing information
+        - Accuracy - Fix incorrect information
+        - Organization - Restructure or reorganize content
+        - Examples - Add or improve code examples
+        - Visual - Add diagrams, screenshots, or formatting
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_issue
+    attributes:
+      label: Current Issue
+      description: What's unclear, missing, or problematic with the current documentation?
+      placeholder: Describe what makes the current documentation difficult to understand or use.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_improvement
+    attributes:
+      label: Suggested Improvement
+      description: How would you improve this documentation?
+      placeholder: |
+        Be specific about what you'd like to see:
+        - Additional explanations
+        - Better examples
+        - Different organization
+        - Missing information
+        etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_impact
+    attributes:
+      label: User Impact
+      description: How would this improvement help developers using RealEstateAPI?
+      placeholder: Explain how this change would make the documentation more helpful for developers.
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this improvement?
+      options:
+        - Low - Nice to have
+        - Medium - Would significantly help developers
+        - High - Critical for developer success
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other context, examples, or references that might help?

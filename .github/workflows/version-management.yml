@@ -1,0 +1,222 @@
+name: Version Management
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths: 
+      - 'docs/v*/**'
+      - 'examples/v*/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/v*/**'
+      - 'examples/v*/**'
+
+jobs:
+  validate-versions:
+    name: Validate Version Consistency
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Validate version structure
+      run: |
+        # Check that all versions have required structure
+        for version in v1 v2 v3; do
+          if [ -d "docs/$version" ]; then
+            echo "✅ Found docs/$version"
+            
+            # Check for required files
+            if [ ! -f "docs/$version/api-reference/overview.md" ]; then
+              echo "❌ Missing docs/$version/api-reference/overview.md"
+              exit 1
+            fi
+            
+            echo "✅ docs/$version structure is valid"
+          fi
+        done
+        
+    - name: Validate Context7 configuration
+      run: |
+        # Check that context7.json includes version information
+        if ! grep -q "apiVersions" context7.json; then
+          echo "❌ context7.json missing apiVersions configuration"
+          exit 1
+        fi
+        
+        echo "✅ Context7 configuration includes versioning"
+        
+    - name: Check version consistency in examples
+      run: |
+        # Validate that examples match their version folders
+        for version in v1 v2 v3; do
+          if [ -d "examples/$version" ]; then
+            echo "Checking examples/$version"
+            
+            # Check JavaScript examples
+            if [ -f "examples/$version/javascript/quick-start.js" ]; then
+              if ! grep -q "/api.realestateapi.com/$version" "examples/$version/javascript/quick-start.js"; then
+                echo "❌ JavaScript example in $version folder doesn't use $version API URL"
+                exit 1
+              fi
+            fi
+            
+            # Check Python examples
+            if [ -f "examples/$version/python/quick_start.py" ]; then
+              if ! grep -q "/api.realestateapi.com/$version" "examples/$version/python/quick_start.py"; then
+                echo "❌ Python example in $version folder doesn't use $version API URL"
+                exit 1
+              fi
+            fi
+            
+            echo "✅ examples/$version consistency validated"
+          fi
+        done
+
+  check-breaking-changes:
+    name: Check for Breaking Changes
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Check for breaking changes in current version
+      run: |
+        # Get current version from context7.json
+        CURRENT_VERSION=$(grep -o '"current": "[^"]*"' context7.json | cut -d'"' -f4)
+        echo "Current version: $CURRENT_VERSION"
+        
+        # Check if any files in current version docs were modified
+        CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+        
+        if echo "$CHANGED_FILES" | grep -q "docs/$CURRENT_VERSION/"; then
+          echo "⚠️ Changes detected in current version ($CURRENT_VERSION) documentation"
+          echo "Changed files:"
+          echo "$CHANGED_FILES" | grep "docs/$CURRENT_VERSION/" || true
+          
+          # Check if this is a breaking change
+          if echo "$CHANGED_FILES" | grep -q "docs/$CURRENT_VERSION/api-reference/"; then
+            echo "🚨 Potential breaking change detected in API reference"
+            echo "Please ensure backward compatibility or bump version number"
+          fi
+        fi
+
+  update-version-index:
+    name: Update Version Index
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Generate version index
+      run: |
+        # Create a dynamic version index
+        cat > docs/versions-auto.json << EOF
+        {
+          "lastUpdated": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+          "versions": {
+        EOF
+        
+        # Add version information
+        for version in v1 v2 v3; do
+          if [ -d "docs/$version" ]; then
+            STATUS="active"
+            if [ "$version" = "v1" ]; then
+              STATUS="deprecated"
+            elif [ "$version" = "v2" ]; then
+              STATUS="supported"
+            elif [ "$version" = "v3" ]; then
+              STATUS="current"
+            fi
+            
+            # Count documentation files
+            DOC_COUNT=$(find "docs/$version" -name "*.md" | wc -l)
+            
+            cat >> docs/versions-auto.json << EOF
+            "$version": {
+              "status": "$STATUS",
+              "documentCount": $DOC_COUNT,
+              "lastModified": "$(git log -1 --format=%ci "docs/$version" 2>/dev/null || echo 'unknown')",
+              "baseUrl": "https://api.realestateapi.com/$version"
+            },
+        EOF
+          fi
+        done
+        
+        # Close JSON (remove last comma and close)
+        sed -i '$ s/,$//' docs/versions-auto.json
+        cat >> docs/versions-auto.json << EOF
+          }
+        }
+        EOF
+        
+        echo "Generated version index:"
+        cat docs/versions-auto.json
+        
+    - name: Commit version index if changed
+      run: |
+        if git diff --quiet docs/versions-auto.json; then
+          echo "No changes to version index"
+        else
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/versions-auto.json
+          git commit -m "Update version index [skip ci]"
+          git push
+        fi
+
+  notify-version-changes:
+    name: Notify Version Changes
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [validate-versions]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+        
+    - name: Check for new version directories
+      run: |
+        # Check if any new version directories were added
+        NEW_VERSIONS=$(git diff --name-only HEAD~1 HEAD | grep -E '^docs/v[0-9]+/' | cut -d'/' -f2 | sort -u || true)
+        
+        if [ -n "$NEW_VERSIONS" ]; then
+          echo "🎉 New API version(s) detected: $NEW_VERSIONS"
+          
+          # Create GitHub issue for new version
+          for VERSION in $NEW_VERSIONS; do
+            echo "Creating tracking issue for $VERSION"
+            # Here you could create a GitHub issue or send notifications
+            # gh issue create --title "New API Version: $VERSION" --body "..." etc.
+          done
+        fi
+        
+    - name: Check for deprecated versions
+      run: |
+        # Check context7.json for deprecated versions
+        DEPRECATED=$(grep -A 10 '"deprecated"' context7.json | grep -o '"v[0-9]*"' | tr -d '"' || true)
+        
+        if [ -n "$DEPRECATED" ]; then
+          echo "⚠️ Deprecated versions found: $DEPRECATED"
+          # Send notifications about deprecated versions
+        fi

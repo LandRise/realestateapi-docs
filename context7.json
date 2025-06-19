@@ -1,0 +1,43 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "RealEstateAPI",
+  "description": "Comprehensive real estate data API with AI-powered MCP server, property search, MLS listings, valuations, skip tracing, mapping, demographics, and portfolio management for developers building real estate applications",
+  "folders": ["docs", "examples", "guides"],
+  "excludeFolders": [],
+  "excludeFiles": ["export.sh"],
+  "apiVersions": {
+    "current": "v2",
+    "supported": ["v1", "v2"],
+    "upcoming": ["v3"],
+    "deprecated": [],
+    "baseUrls": {
+      "v1": "https://api.realestateapi.com/v1",
+      "v2": "https://api.realestateapi.com/v2", 
+      "v3": "https://api.realestateapi.com/v3"
+    }
+  },
+  "rules": [
+    "Always authenticate requests with API key in headers",
+    "Use PropGPT for natural language property searches with plain English queries",
+    "Use bulk operations for multiple property lookups (up to 1,000 properties)",
+    "Leverage compound queries for complex Boolean search logic",
+    "Use ids_only mode for credit optimization with large datasets",
+    "Implement rate limiting to respect API quotas and model-specific limits",
+    "Cache property data appropriately - demographics annually, boundaries indefinitely",
+    "Use AutoComplete API for free unlimited address suggestions",
+    "Implement saved searches for ongoing property monitoring",
+    "Handle pagination with cursor-based pagination for large datasets",
+    "Validate addresses with Address Verification API before searches",
+    "Use appropriate search modes: count for totals, summary_stats for analytics",
+    "Leverage mapping APIs for boundary visualization and area analysis",
+    "Check API version compatibility before implementation - v3 introduces breaking changes",
+    "Use version-specific documentation and examples for accurate implementation"
+  ],
+  "versioningStrategy": {
+    "documentationStructure": "version-folders",
+    "backwardCompatibility": "2-versions",
+    "migrationSupport": true,
+    "changelogRequired": true
+  },
+  "previousVersions": []
+}

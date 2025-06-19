@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "public": true,
+  "github": {
+    "enabled": true
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/docs/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=1800"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/api-reference/(.*)",
+      "destination": "/docs/api-reference/$1",
+      "permanent": true
+    },
+    {
+      "source": "/guide/(.*)",
+      "destination": "/guides/$1",
+      "permanent": true
+    }
+  ],
+  "trailingSlash": false,
+  "cleanUrls": true
+}

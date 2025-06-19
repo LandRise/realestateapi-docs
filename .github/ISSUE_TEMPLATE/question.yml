@@ -1,0 +1,93 @@
+name: ❓ Question
+description: Ask a question about the documentation or API usage
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question! We're here to help you succeed with RealEstateAPI.
+        
+        **Before submitting:** Please check our [documentation](https://developer.realestateapi.com) and [FAQ](https://www.realestateapi.com/faq) first.
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Question Topic
+      description: What is your question about?
+      options:
+        - API Usage - How to use specific endpoints
+        - Authentication - API keys and security
+        - Code Examples - Understanding or modifying examples
+        - Integration - Connecting with other services
+        - Best Practices - Recommended approaches
+        - Troubleshooting - Something isn't working
+        - Billing/Pricing - Account and usage questions
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Please be as specific as possible. Include what you're trying to accomplish and what you've already tried.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to build or accomplish?
+      placeholder: |
+        Help us understand your use case:
+        - What type of application are you building?
+        - What data do you need?
+        - What's your technical background?
+
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What Have You Tried?
+      description: What solutions have you already attempted?
+      placeholder: |
+        List what you've tried:
+        - Documentation you've read
+        - Code you've tested
+        - Errors you've encountered
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Relevant Code
+      description: Share any relevant code (remove API keys!)
+      render: javascript
+      placeholder: |
+        // Paste your code here (remember to replace your actual API key with 'YOUR_API_KEY')
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How urgent is this question?
+      options:
+        - Low - Just curious, no rush
+        - Medium - Working on this now
+        - High - Blocking my development
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm you've done the following
+      options:
+        - label: I've searched existing issues and discussions
+          required: true
+        - label: I've checked the documentation at developer.realestateapi.com
+          required: true
+        - label: I've removed any real API keys from code examples
+          required: true

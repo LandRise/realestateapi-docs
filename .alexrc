@@ -1,0 +1,13 @@
+{
+  "allow": [
+    "disabled",
+    "hook",
+    "hooks",
+    "invalid",
+    "master",
+    "simple",
+    "whitelist",
+    "blacklist"
+  ],
+  "profanitySureness": 1
+}

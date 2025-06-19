@@ -1,0 +1,124 @@
+# RealEstateAPI Documentation Site Configuration
+
+# Site settings
+title: RealEstateAPI Documentation
+description: Comprehensive real estate data API with AI-powered features
+url: "https://docs.realestateapi.com"
+baseurl: ""
+
+# API Version Configuration
+api:
+  current_version: "v3"
+  supported_versions: ["v1", "v2", "v3"]
+  deprecated_versions: []
+  version_urls:
+    v1: "https://api.realestateapi.com/v1"
+    v2: "https://api.realestateapi.com/v2"
+    v3: "https://api.realestateapi.com/v3"
+  
+# Navigation structure
+navigation:
+  main:
+    - title: "Getting Started"
+      url: "/guides/getting-started"
+    - title: "API Reference"
+      url: "/docs/versions"
+      children:
+        - title: "v3 (Current)"
+          url: "/docs/v3/api-reference/overview"
+        - title: "v2 (Legacy)"
+          url: "/docs/v2/api-reference/overview"
+        - title: "v1 (Deprecated)"
+          url: "/docs/v1/api-reference/overview"
+    - title: "Examples"
+      url: "/examples"
+      children:
+        - title: "v3 Examples"
+          url: "/examples/v3"
+        - title: "v2 Examples"
+          url: "/examples/v2"
+        - title: "Migration Tools"
+          url: "/examples/migration"
+    - title: "Guides"
+      url: "/guides"
+    - title: "Support"
+      url: "/support"
+
+# Version-specific redirects
+redirects:
+  # Default API reference goes to current version
+  - from: "/api-reference"
+    to: "/docs/v3/api-reference/overview"
+  - from: "/docs/api-reference"
+    to: "/docs/v3/api-reference/overview"
+  
+  # Legacy redirects
+  - from: "/v1"
+    to: "/docs/v1/api-reference/overview"
+  - from: "/v2"
+    to: "/docs/v2/api-reference/overview"
+  - from: "/v3"
+    to: "/docs/v3/api-reference/overview"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Plugins
+plugins:
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Collections for version-specific content
+collections:
+  v3_docs:
+    output: true
+    permalink: /docs/v3/:path/
+  v2_docs:
+    output: true
+    permalink: /docs/v2/:path/
+  v1_docs:
+    output: true
+    permalink: /docs/v1/:path/
+
+# Default layouts for different content types
+defaults:
+  - scope:
+      path: "docs/v3"
+    values:
+      layout: "api-docs"
+      version: "v3"
+      api_url: "https://api.realestateapi.com/v3"
+  - scope:
+      path: "docs/v2"
+    values:
+      layout: "api-docs"
+      version: "v2"
+      api_url: "https://api.realestateapi.com/v2"
+  - scope:
+      path: "docs/v1"
+    values:
+      layout: "api-docs"
+      version: "v1"
+      api_url: "https://api.realestateapi.com/v1"
+      deprecated: true
+  - scope:
+      path: "examples"
+    values:
+      layout: "example"
+
+# Exclude from processing
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - .github
+  - .gitignore
+  - README.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - export.sh
