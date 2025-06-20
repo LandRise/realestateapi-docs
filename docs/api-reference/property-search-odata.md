@@ -31,7 +31,7 @@ Contact your API provider to obtain a valid API key. Each key is unique and shou
 ### Authentication Example
 ```bash
 curl -H "x-api-key: your-api-key-here" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$top=10"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$top=10"
 ```
 
 ---
@@ -40,7 +40,7 @@ curl -H "x-api-key: your-api-key-here" \
 
 ### Base URL
 ```
-https://api.realestate.com/v2
+https://api.realestateapi.com/v2
 ```
 
 ### Available Endpoints
@@ -154,7 +154,7 @@ The API supports comparing two fields directly, including both top-level and nes
 - Nested fields: `propertyInfo.bedrooms gt propertyInfo.bathrooms`
 - Mixed levels: `estimatedValue gt taxInfo.assessedValue`
 
-**Performance Note:** Field-to-field comparisons use Elasticsearch script queries with null-checking for robustness. These are slightly slower than term/range queries, so consider pagination for large datasets.
+**Performance Note:** Field-to-field comparisons use null-checking for robustness. These are slightly slower than term/range queries, so consider pagination for large datasets.
 
 **Examples:**
 ```
@@ -317,77 +317,77 @@ $count=true
 ### Basic Property Search
 ```bash
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$top=10&$count=true"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$top=10&$count=true"
 ```
 
 ### Filter by City
 ```bash
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=propertyInfo.address.city eq 'Austin'&$top=25"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=propertyInfo.address.city eq 'Austin'&$top=25"
 ```
 
 ### High-Value Properties with Multiple Conditions
 ```bash
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=estimatedValue gt 750000 and propertyInfo.bedrooms gte 4 and propertyInfo.bathrooms gte 3&$orderby=estimatedValue desc&$top=20"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=estimatedValue gt 750000 and propertyInfo.bedrooms gte 4 and propertyInfo.bathrooms gte 3&$orderby=estimatedValue desc&$top=20"
 ```
 
 ### Absentee Owner Properties
 ```bash
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=ownerInfo.absenteeOwner eq true and estimatedEquity gt 100000&$orderby=estimatedEquity desc&$top=50"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=ownerInfo.absenteeOwner eq true and estimatedEquity gt 100000&$orderby=estimatedEquity desc&$top=50"
 ```
 
 ### Investment Opportunities
 ```bash
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=(vacant eq true or absenteeOwner eq true) and estimatedValue lt 500000&$orderby=estimatedValue asc&$top=100"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=(vacant eq true or absenteeOwner eq true) and estimatedValue lt 500000&$orderby=estimatedValue asc&$top=100"
 ```
 
 ### Field-to-Field Comparisons
 ```bash
 # Properties where estimated value exceeds MLS listing price
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=estimatedValue gt mlsListingPrice&$top=25"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=estimatedValue gt mlsListingPrice&$top=25"
 
 # Properties with high equity (estimated equity > mortgage balance)
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=estimatedEquity gt openMortgageBalance&$orderby=estimatedEquity desc&$top=50"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=estimatedEquity gt openMortgageBalance&$orderby=estimatedEquity desc&$top=50"
 
 # Complex field comparison with literal constraints
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=estimatedValue gt 400000 and estimatedValue gt mlsListingPrice and estimatedEquity gt 100000&$top=30"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=estimatedValue gt 400000 and estimatedValue gt mlsListingPrice and estimatedEquity gt 100000&$top=30"
 
 # Nested field comparisons
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=propertyInfo.bedrooms gt propertyInfo.bathrooms&$top=25"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=propertyInfo.bedrooms gt propertyInfo.bathrooms&$top=25"
 
 # Mixed field comparisons (nested to top-level)
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=estimatedValue gt taxInfo.assessedValue and propertyInfo.livingSquareFeet gte propertyInfo.lotSquareFeet&$top=20"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=estimatedValue gt taxInfo.assessedValue and propertyInfo.livingSquareFeet gte propertyInfo.lotSquareFeet&$top=20"
 ```
 
 ### Recently Built Properties
 ```bash
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=propertyInfo.yearBuilt gt 2015 and propertyInfo.address.state eq 'TX'&$top=30"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=propertyInfo.yearBuilt gt 2015 and propertyInfo.address.state eq 'TX'&$top=30"
 ```
 
 ### Pagination Example
 ```bash
 # Page 1 (results 1-25)
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=propertyInfo.address.city eq 'Houston'&$top=25&$skip=0&$count=true"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=propertyInfo.address.city eq 'Houston'&$top=25&$skip=0&$count=true"
 
 # Page 2 (results 26-50)  
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=propertyInfo.address.city eq 'Houston'&$top=25&$skip=25"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=propertyInfo.address.city eq 'Houston'&$top=25&$skip=25"
 ```
 
 ### Complex Query with Multiple Filters
 ```bash
 curl -H "x-api-key: your-api-key" \
-  "https://api.realestate.com/v2/PropertySearch/odata?$filter=propertyInfo.address.state eq 'CA' and estimatedValue gt 600000 and estimatedValue lt 1200000 and propertyInfo.bedrooms gte 3 and not (mlsActive eq true)&$orderby=estimatedValue desc,propertyInfo.yearBuilt desc&$top=50&$count=true"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=propertyInfo.address.state eq 'CA' and estimatedValue gt 600000 and estimatedValue lt 1200000 and propertyInfo.bedrooms gte 3 and not (mlsActive eq true)&$orderby=estimatedValue desc,propertyInfo.yearBuilt desc&$top=50&$count=true"
 ```
 
 ---
@@ -491,7 +491,7 @@ curl -H "x-api-key: your-api-key" \
 const axios = require('axios');
 
 class RealEstateAPI {
-  constructor(apiKey, baseUrl = 'https://api.realestate.com/v2') {
+  constructor(apiKey, baseUrl = 'https://api.realestateapi.com/v2') {
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
   }
@@ -547,7 +547,7 @@ import requests
 from urllib.parse import urlencode
 
 class RealEstateAPI:
-    def __init__(self, api_key, base_url='https://api.realestate.com/v2'):
+    def __init__(self, api_key, base_url='https://api.realestateapi.com/v2'):
         self.api_key = api_key
         self.base_url = base_url
     
@@ -601,7 +601,7 @@ class RealEstateAPI {
     private $apiKey;
     private $baseUrl;
     
-    public function __construct($apiKey, $baseUrl = 'https://api.realestate.com/v2') {
+    public function __construct($apiKey, $baseUrl = 'https://api.realestateapi.com/v2') {
         $this->apiKey = $apiKey;
         $this->baseUrl = $baseUrl;
     }
@@ -658,7 +658,7 @@ echo "Found " . $result['@odata.count'] . " properties\n";
 # Basic search with authentication
 curl -H "x-api-key: your-api-key" \
      -H "Content-Type: application/json" \
-     "https://api.realestate.com/v2/PropertySearch/odata?$top=10"
+     "https://api.realestateapi.com/v2/PropertySearch/odata?$top=10"
 
 # Complex search with multiple filters
 curl -H "x-api-key: your-api-key" \
@@ -668,7 +668,7 @@ curl -H "x-api-key: your-api-key" \
      --data-urlencode '$top=25' \
      --data-urlencode '$orderby=estimatedValue desc' \
      --data-urlencode '$count=true' \
-     "https://api.realestate.com/v2/PropertySearch/odata"
+     "https://api.realestateapi.com/v2/PropertySearch/odata"
 ```
 
 ---
