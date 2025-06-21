@@ -341,15 +341,15 @@ $count=true
 ```bash
 # Get first 10 properties (requires API key)
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?$top=10"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?$top=10"
 
 # Filter by city
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$filter=propertyInfo.address.city eq 'Austin'"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$filter=propertyInfo.address.city eq 'Austin'"
 
 # Filter with pagination and sorting
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$filter=estimatedValue gt 500000&\$top=5&\$orderby=estimatedValue desc"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$filter=estimatedValue gt 500000&\$top=5&\$orderby=estimatedValue desc"
 ```
 
 
@@ -427,42 +427,42 @@ curl -H "x-api-key: your-api-key" \
 ```bash
 # Multiple conditions with AND
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$filter=propertyInfo.bedrooms eq 3 and propertyInfo.bathrooms gt 2"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$filter=propertyInfo.bedrooms eq 3 and propertyInfo.bathrooms gt 2"
 
 # Multiple conditions with OR
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$filter=vacant eq true or absenteeOwner eq true"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$filter=vacant eq true or absenteeOwner eq true"
 
 # Range queries
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$filter=estimatedValue gt 300000 and estimatedValue lt 800000"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$filter=estimatedValue gt 300000 and estimatedValue lt 800000"
 
 # Nested field queries
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$filter=ownerInfo.absenteeOwner eq true and propertyInfo.yearBuilt gt 2000"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$filter=ownerInfo.absenteeOwner eq true and propertyInfo.yearBuilt gt 2000"
 
 # Field-to-field comparisons (top-level)
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$filter=estimatedValue gt mlsListingPrice"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$filter=estimatedValue gt mlsListingPrice"
 
 # Nested field-to-field comparisons
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$filter=propertyInfo.bedrooms gt propertyInfo.bathrooms"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$filter=propertyInfo.bedrooms gt propertyInfo.bathrooms"
 ```
 
 ### Sorting and Pagination
 ```bash
 # Sort by multiple fields
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$orderby=estimatedValue desc,propertyInfo.yearBuilt asc&\$top=10"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$orderby=estimatedValue desc,propertyInfo.yearBuilt asc&\$top=10"
 
 # Skip results (pagination)
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$skip=20&\$top=10"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$skip=20&\$top=10"
 
 # Get count
 curl -H "x-api-key: demo-api-key-12345" \
-  "http://localhost:3000/PropertySearch/odata?\$count=true&\$top=5"
+  "https://api.realestateapi.com/v2/PropertySearch/odata?\$count=true&\$top=5"
 ```
 
 ---
