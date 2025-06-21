@@ -752,9 +752,9 @@ curl -H "x-api-key: your-api-key" \
 
 For technical support, API issues, or questions about integration:
 
-- **Documentation:** [Developer Portal](https://docs.realestate-api.com)
-- **Email:** developers@realestate-api.com
-- **Status Page:** [status.realestate-api.com](https://status.realestate-api.com)
+- **Documentation:** [Developer Portal](https://developers.realestateapi.com)
+- **Email:** developers@realestateapi.com
+- **Status Page:** [status.realestateapi.com](https://status.realestateapi.com)
 
 ---
 
@@ -1070,7 +1070,7 @@ The following table contains all queryable fields available in the Real Estate O
 
 ## 📄 License & Terms
 
-By using this API, you agree to the [Terms of Service](https://realestate-api.com/terms) and [Privacy Policy](https://realestate-api.com/privacy).
+By using this API, you agree to the [Terms of Service](https://realestateapi.com/terms) and [Privacy Policy](https://realestateapi.com/privacy).
 
 ---
 
