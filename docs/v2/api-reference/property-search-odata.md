@@ -130,6 +130,15 @@ All successful responses follow the OData v4 JSON format:
 
 The API supports standard OData query parameters:
 
+| Parameter | Description | Example |
+|--------|-------------|---------|
+| `$filter` | Filter results | `$filter=city eq 'Austin'` |
+| `$top` | Limit results (max 1000) | `$top=10` |
+| `$skip` | Skip results for pagination | `$skip=20` |
+| `$orderby` | Sort results | `$orderby=estimatedValue desc` |
+| `$count` | Include total count | `$count=true` |
+
+
 ### $filter
 Filter properties based on field values.
 
@@ -145,6 +154,19 @@ Filter properties based on field values.
 - `and` - logical AND
 - `or` - logical OR
 - `not` - logical NOT
+
+| Operator | Description | Example |
+|----------|-------------|---------|
+| `eq` | Equals | `city eq 'Austin'` |
+| `ne` | Not equals | `vacant ne true` |
+| `gt` | Greater than | `estimatedValue gt 500000` |
+| `gte` | Greater than or equal | `bedrooms gte 3` |
+| `lt` | Less than | `yearBuilt lt 2000` |
+| `lte` | Less than or equal | `bathrooms lte 2` |
+| `and` | Logical AND | `bedrooms eq 3 and bathrooms gt 2` |
+| `or` | Logical OR | `vacant eq true or absenteeOwner eq true` |
+| `not` | Logical NOT | `not (mlsActive eq true)` |
+
 
 **Field-to-Field Comparisons:**
 The API supports comparing two fields directly, including both top-level and nested field comparisons.
@@ -315,10 +337,21 @@ $count=true
 ## 💡 Examples
 
 ### Basic Property Search
+
 ```bash
-curl -H "x-api-key: your-api-key" \
-  "https://api.realestateapi.com/v2/PropertySearch/odata?$top=10&$count=true"
+# Get first 10 properties (requires API key)
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?$top=10"
+
+# Filter by city
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$filter=propertyInfo.address.city eq 'Austin'"
+
+# Filter with pagination and sorting
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$filter=estimatedValue gt 500000&\$top=5&\$orderby=estimatedValue desc"
 ```
+
 
 ### Filter by City
 ```bash
@@ -388,6 +421,48 @@ curl -H "x-api-key: your-api-key" \
 ```bash
 curl -H "x-api-key: your-api-key" \
   "https://api.realestateapi.com/v2/PropertySearch/odata?$filter=propertyInfo.address.state eq 'CA' and estimatedValue gt 600000 and estimatedValue lt 1200000 and propertyInfo.bedrooms gte 3 and not (mlsActive eq true)&$orderby=estimatedValue desc,propertyInfo.yearBuilt desc&$top=50&$count=true"
+```
+
+### More Advanced Filtering
+```bash
+# Multiple conditions with AND
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$filter=propertyInfo.bedrooms eq 3 and propertyInfo.bathrooms gt 2"
+
+# Multiple conditions with OR
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$filter=vacant eq true or absenteeOwner eq true"
+
+# Range queries
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$filter=estimatedValue gt 300000 and estimatedValue lt 800000"
+
+# Nested field queries
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$filter=ownerInfo.absenteeOwner eq true and propertyInfo.yearBuilt gt 2000"
+
+# Field-to-field comparisons (top-level)
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$filter=estimatedValue gt mlsListingPrice"
+
+# Nested field-to-field comparisons
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$filter=propertyInfo.bedrooms gt propertyInfo.bathrooms"
+```
+
+### Sorting and Pagination
+```bash
+# Sort by multiple fields
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$orderby=estimatedValue desc,propertyInfo.yearBuilt asc&\$top=10"
+
+# Skip results (pagination)
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$skip=20&\$top=10"
+
+# Get count
+curl -H "x-api-key: demo-api-key-12345" \
+  "http://localhost:3000/PropertySearch/odata?\$count=true&\$top=5"
 ```
 
 ---
