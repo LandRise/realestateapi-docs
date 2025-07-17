@@ -18,15 +18,15 @@ This repository contains comprehensive documentation, code examples, and integra
 ## Quick Start
 
 1. Sign up for an API key at [RealEstateAPI.com](https://www.realestateapi.com)
-2. Review the [Getting Started Guide](@docs/Documentation/getting-started/)
-3. Explore our [API Reference](@reference/)
-4. Check out [Code Examples](@recipes/)
+2. Review the [Getting Started Guide](docs/Documentation/getting-started/)
+3. Explore our [API Reference](reference/)
+4. Check out [Code Examples](recipes/)
 
 ## Documentation Structure
 
 This documentation site is organized into three main sections:
 
-### 📚 API Reference (`@reference/`)
+### 📚 API Reference (`reference/`)
 Complete API documentation organized by service category:
 - **AI APIs** - PropGPT natural language search and feedback
 - **Address Standardization APIs** - Address verification and autocomplete
@@ -39,7 +39,7 @@ Complete API documentation organized by service category:
 - **Valuation APIs** - Property valuations and comparable analysis
 - **Docs** - Platform documentation including integrations and changelog
 
-### 🍳 Code Examples (`@recipes/`)
+### 🍳 Code Examples (`recipes/`)
 Practical code examples and tutorials:
 - Property search and detail examples
 - Skip tracing implementations
@@ -47,7 +47,7 @@ Practical code examples and tutorials:
 - Polygon search tutorials
 - Server-side integration examples
 
-### 🚀 Getting Started (`@docs/Documentation/`)
+### 🚀 Getting Started (`docs/Documentation/`)
 Essential documentation for new developers:
 - API specifications and standards
 - Authentication setup
