@@ -38,6 +38,7 @@ Complete API documentation organized by service category:
 - **Utility APIs** - Usage tracking and account management
 - **Valuation APIs** - Property valuations and comparable analysis
 - **Docs** - Platform documentation including integrations and changelog
+- **ODATA** - How to use and access our ODATA endpoint for property search
 - **Response Schemas** - Response schema modles and types for each API
 
 ### 🍳 Code Examples (`recipes/`)
