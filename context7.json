@@ -1,8 +1,8 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "RealEstateAPI",
-  "description": "Comprehensive real estate data API with AI-powered MCP server, property search, MLS listings, valuations, skip tracing, mapping, demographics, and portfolio management for developers building real estate applications",
-  "folders": ["docs", "examples", "guides"],
+  "description": "Developer documentation for RealEstateAPI - comprehensive real estate data API with AI-powered search, property details, MLS listings, valuations, skip tracing, mapping, demographics, and portfolio management tools",
+  "folders": ["reference", "recipes", "docs"],
   "excludeFolders": [],
   "excludeFiles": ["export.sh"],
   "apiVersions": {
