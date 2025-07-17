@@ -1,0 +1,47 @@
+---
+title: Roof Construction Codes
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+NULL	UNKNOWN OR NOT PROVIDED\
+0	UNKNOWN\
+101	DORMER\
+103	MONITOR\
+107	BARN\
+108	CANOPY\
+109	FRAME\
+113	GAMBREL/MANSARD\
+115	BUTTERFLY\
+116	COMPLEX/CUSTOM\
+117	CONTEMPORARY\
+118	PITCHED\
+119	ARCHED\
+120	A-FRAME\
+121	BUBBLE\
+124	BARREL\
+125	PYRAMID\
+126	SWISS CHALET/ALPINE\
+127	OTHER\
+197	FLAT\
+251	GABLE\
+253	GABLE/HIP\
+258	HIP\
+265	MANSARD\
+274	SHED\
+282	SAWTOOTH\
+283	CATHEDRAL/CLERESTORY\
+289	GAMBREL\
+311	Rigid Frm Bar Jt\
+312	Steel Frm/truss\
+313	Bowstring Truss\
+318	Wood Truss\
+320	Prestress Concrete\
+329	Reinforced Concrete\
+345	GEODESIC / DOME
