@@ -38,6 +38,7 @@ Complete API documentation organized by service category:
 - **Utility APIs** - Usage tracking and account management
 - **Valuation APIs** - Property valuations and comparable analysis
 - **Docs** - Platform documentation including integrations and changelog
+- **Response Schemas** - Response schema modles and types for each API
 
 ### 🍳 Code Examples (`recipes/`)
 Practical code examples and tutorials:
