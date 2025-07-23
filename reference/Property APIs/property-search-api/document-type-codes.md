@@ -12,7 +12,7 @@ next:
 ---
 Filter your search properties based on how they were transacted. Find different Deed Types, Liens, Trustee Relationships, and more! 
 
-These code values can be used in the "document\_type" field.
+These document type code values can be used in the "document\_type" field.
 
 <br />
 
