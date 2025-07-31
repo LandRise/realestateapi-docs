@@ -1,23 +1,27 @@
 # Real Estate API MCP Server - Connection Guide
 
-This guide explains how to connect to the Real Estate API MCP (Model Context Protocol) server using your API key. Our MCP server is built with FastMCP and supports standard MCP connections.
+This guide explains how to connect to the Real Estate API MCP servers. We provide two MCP servers:
+- **Production Server**: For accessing real estate data (requires API key)
+- **Developer Server**: For IDE integration with documentation and code examples (no authentication required)
 
-## Authentication
+## Production MCP Server
 
-The Real Estate API MCP server requires an API key for authentication. You can provide this key in two ways:
+### Authentication
+
+The production MCP server requires an API key for authentication. You can provide this key in two ways:
 - **URL Parameter**: `x-api-key=YOUR_API_KEY`
 - **HTTP Header**: `x-api-key: YOUR_API_KEY`
 
-## Connection Methods
+### Connection Methods
 
-### 1. Claude Desktop & MCP-Compatible Applications
+#### 1. Claude Desktop & MCP-Compatible Applications
 
 For applications that support MCP configuration files (like Claude Desktop), add the following to your configuration:
 
 ```json
 {
   "mcpServers": {
-    "realestateapi-mcp": {
+    "realestate-api-mcp": {
       "url": "https://mcp.realestateapi.com/sse",
       "headers": {
         "x-api-key": "YOUR_API_KEY"
@@ -31,7 +35,7 @@ For applications that support MCP configuration files (like Claude Desktop), add
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-### 2. Programmatic Integration (Claude API)
+#### 2. Programmatic Integration (Claude API)
 
 When building applications that call the Claude API with MCP server support, use the following configuration:
 
@@ -40,7 +44,7 @@ const mcpServers = [
   {
     type: "url",
     url: "https://mcp.realestateapi.com/sse?x-api-key=YOUR_API_KEY",
-    name: "realestateapi-mcp",
+    name: "realestate-api-mcp",
     tool_configuration: {
       enabled: true
     }
@@ -48,29 +52,86 @@ const mcpServers = [
 ]
 ```
 
-Then pass this configuration when making API calls to Claude.
+## Developer MCP Server (IDE Integration)
 
-### 3. Other MCP-Compatible Clients
+### Overview
 
-Our MCP server works with any client or application that implements the Model Context Protocol standard. Simply use either:
-- **URL with parameter**: `https://mcp.realestateapi.com/sse?x-api-key=YOUR_API_KEY`
-- **Base URL with headers**: Configure the client to send the `x-api-key` header if supported
+Our developer MCP server embeds Real Estate API documentation and code examples directly in your IDE. No authentication required!
 
-## Quick Start
+### Features
+- Full API documentation accessible within your IDE
+- Code examples and snippets
+- Interactive assistance for API integration
+- Support for queries like "update this function to call the realestateapi propertysearch dynamically"
 
-1. Obtain your API key from the RealEstateAPI dashboard
-2. Choose your connection method based on your use case
-3. Replace `YOUR_API_KEY` with your actual API key
-4. For desktop applications, restart the app after updating configuration
-5. Test the connection by querying real estate data through the MCP tools
+### IDE Configuration
+
+#### Cline, Windsurf, and Other MCP-Compatible IDEs
+
+Add the following to your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "reapi-developer": {
+      "url": "https://developer.mcp.realestateapi.com/sse"
+    }
+  }
+}
+```
+
+Once configured, you can:
+- Access complete API documentation without leaving your IDE
+- Get contextual code examples
+- Ask for help implementing specific API calls
+- Request code modifications that integrate Real Estate API endpoints
+
+### Example Use Cases
+- "Show me how to search for properties in Chicago"
+- "Update this function to call the realestateapi propertysearch dynamically"
+- "What parameters does the property details endpoint accept?"
+- "Generate a TypeScript interface for the property response"
+
+## Complete Configuration Example
+
+To use both servers together (recommended for development):
+
+```json
+{
+  "mcpServers": {
+    "realestate-api-mcp": {
+      "url": "https://mcp.realestateapi.com/sse",
+      "headers": {
+        "x-api-key": "YOUR_API_KEY"
+      }
+    },
+    "reapi-developer": {
+      "url": "https://developer.mcp.realestateapi.com/sse"
+    }
+  }
+}
+```
+
+This gives you:
+- **realestate-api-mcp**: Access to live real estate data
+- **reapi-developer**: Documentation and code assistance in your IDE
 
 ## Compatibility
 
-This MCP server is compatible with:
+Both MCP servers are compatible with:
 - Claude Desktop
+- Cline
+- Windsurf
 - Applications using the Anthropic API with MCP support
-- Any MCP-compliant client or framework
+- Any MCP-compliant client, IDE, or framework
 - Custom applications implementing the MCP protocol
+
+## Quick Start
+
+1. **For development**: Add the developer server to your IDE configuration (no API key needed)
+2. **For production data**: Obtain your API key and configure the production server
+3. Restart your application/IDE after updating configuration
+4. Start building with full documentation and live data access!
 
 ## Support
 
