@@ -17,7 +17,7 @@ For applications that support MCP configuration files (like Claude Desktop), add
 ```json
 {
   "mcpServers": {
-    "realestate-api-mcp": {
+    "realestateapi-mcp": {
       "url": "https://mcp.realestateapi.com/sse",
       "headers": {
         "x-api-key": "YOUR_API_KEY"
@@ -40,7 +40,7 @@ const mcpServers = [
   {
     type: "url",
     url: "https://mcp.realestateapi.com/sse?x-api-key=YOUR_API_KEY",
-    name: "realestate-api-mcp",
+    name: "realestateapi-mcp",
     tool_configuration: {
       enabled: true
     }
