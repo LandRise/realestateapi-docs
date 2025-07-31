@@ -18,12 +18,11 @@ This repository contains comprehensive documentation, code examples, and integra
 ## Quick Start
 
 1. Sign up for an API key at [RealEstateAPI.com](https://www.realestateapi.com)
-2. Review the [Getting Started Guide](docs/Documentation/getting-started/)
-3. Review the [Authentication Guide](./docs/authentication/getting-started.md)
-4. Connect to our MCP Server [MCP Connection Guide](./guides/mcp-server.md)
-5. Check out [Code Examples](./examples/)
+2. Review the [Getting Started Guide](./reference/Docs/welcome-to-realestateapi/index.md)
+3. Review the [Authentication Guide](/reference/Docs/welcome-to-realestateapi/get-realestateapi-test-key.md)
+4. Connect to our MCP Server [MCP Connection Guide](./reference/mcp-server.md)
+5. Check out [Code Examples](recipes/)
 6. Explore our [API Reference](reference/)
-7. Check out [Code Examples](recipes/)
 
 ## Documentation Structure
 
