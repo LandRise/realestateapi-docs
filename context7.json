@@ -1,8 +1,8 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "RealEstateAPI",
-  "description": "Comprehensive real estate data API with AI-powered MCP server, property search, MLS listings, valuations, skip tracing, mapping, demographics, and portfolio management for developers building real estate applications",
-  "folders": ["docs", "examples", "guides"],
+  "description": "Developer documentation for RealEstateAPI - comprehensive real estate data API with AI-powered search, property details, MLS listings, valuations, skip tracing, mapping, demographics, and portfolio management tools",
+  "folders": ["reference", "recipes", "docs"],
   "excludeFolders": [],
   "excludeFiles": ["export.sh"],
   "apiVersions": {
@@ -28,9 +28,9 @@
     "Implement saved searches for ongoing property monitoring",
     "Handle pagination with cursor-based pagination for large datasets",
     "Validate addresses with Address Verification API before searches",
-    "Use appropriate search modes: count for totals, summary_stats for analytics",
+    "Use appropriate search modes: count for totals, summary for analytics",
     "Leverage mapping APIs for boundary visualization and area analysis",
-    "Check API version compatibility before implementation - v3 introduces breaking changes",
+    "Check API version compatibility before implementation - v3 will introduce breaking changes",
     "Use version-specific documentation and examples for accurate implementation"
   ],
   "versioningStrategy": {

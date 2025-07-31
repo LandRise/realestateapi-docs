@@ -18,20 +18,47 @@ This repository contains comprehensive documentation, code examples, and integra
 ## Quick Start
 
 1. Sign up for an API key at [RealEstateAPI.com](https://www.realestateapi.com)
-2. Review the [Authentication Guide](./docs/authentication/getting-started.md)
-3. Explore our [API Reference](./docs/api-reference/)
+2. Review the [Getting Started Guide](docs/Documentation/getting-started/)
+3. Review the [Authentication Guide](./docs/authentication/getting-started.md)
 4. Connect to our MCP Server [MCP Connection Guide](./guides/mcp-server.md)
-4. Check out [Code Examples](./examples/)
+5. Check out [Code Examples](./examples/)
+6. Explore our [API Reference](reference/)
+7. Check out [Code Examples](recipes/)
 
 ## Documentation Structure
 
-- `/docs` - Complete API documentation
-  - `/api-reference` - Detailed endpoint documentation
-  - `/authentication` - Authentication and security guides
-  - `/webhooks` - Webhook implementation guides
-  - `/integrations` - Third-party integration guides
-- `/examples` - Code examples in multiple languages
-- `/guides` - Step-by-step implementation guides
+This documentation site is organized into three main sections:
+
+### 📚 API Reference (`reference/`)
+Complete API documentation organized by service category:
+- **AI APIs** - PropGPT natural language search and feedback
+- **Address Standardization APIs** - Address verification and autocomplete
+- **MLS APIs** - Multiple listing service search and property details
+- **Mapping APIs** - Property boundaries and mapping pins
+- **Property APIs** - Property search, details, and CSV generation
+- **Property Portfolio APIs** - Saved searches and portfolio management
+- **Skiptrace APIs** - Contact information and bulk skip tracing
+- **Utility APIs** - Usage tracking and account management
+- **Valuation APIs** - Property valuations and comparable analysis
+- **Docs** - Platform documentation including integrations and changelog
+- **ODATA** - How to use and access our ODATA endpoint for property search
+- **Response Schemas** - Response schema modles and types for each API
+
+### 🍳 Code Examples (`recipes/`)
+Practical code examples and tutorials:
+- Property search and detail examples
+- Skip tracing implementations
+- Bulk processing examples
+- Polygon search tutorials
+- Server-side integration examples
+
+### 🚀 Getting Started (`docs/Documentation/`)
+Essential documentation for new developers:
+- API specifications and standards
+- Authentication setup
+- Cross-origin resource sharing (CORS)
+- API key management
+- Introduction and overview
 
 ## Key Features
 
